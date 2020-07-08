@@ -11,9 +11,8 @@ import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
+@javax.persistence.Table(name = "table_order")
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class Order extends AbstractEntity {
 
     private String clientName;
@@ -22,11 +21,15 @@ public class Order extends AbstractEntity {
 
     private Double price;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE,
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE,
             CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "table_id")
     private Table table;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinTable(name = "product_in_order",
+    joinColumns = @JoinColumn(name = "order_id"),
+    inverseJoinColumns = @JoinColumn(name = "product_id"))
     private List<Product> products;
 }

@@ -12,8 +12,9 @@ public interface UserService extends UserDetailsService {
 
 	User findByUserName(String userName);
 
-	void save(CrmUser crmUser);
+	void createUser(CrmUser crmUser);
 
 	List<User> findAll();
+	List<User> findAllByEmailAndUserName(String userName, String email);
 
 }

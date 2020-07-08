@@ -3,13 +3,12 @@ package com.datauser.cafemanager.dao;
 import com.datauser.cafemanager.models.Table;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
+import java.util.Optional;
 
-public interface TableDao extends JpaRepository<Table, Long> {
+public interface TableDao extends JpaRepository<Table, String> {
 
-    Table findById(String id);
+    Optional<Table> findById(String id);
 
     Table save(Table user);
 
-    List<Table> findAllByIdIsNotNull();
 }

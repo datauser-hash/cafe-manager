@@ -21,7 +21,7 @@
     <div id="content">
         <h2>Users List</h2>
         <!-- put new button: Add Customer -->
-        <input type="button" value="Add Users"
+        <input type="button" value="Add User"
                onclick="window.location.href='/register/showRegistrationForm';
                return false;" class="add-button"/>
 
@@ -38,22 +38,10 @@
 
             <!-- loop over and print our customers-->
             <th:block th:each="user : ${users}">
-
-                <!-- construct an "update" link with customer id-->
-                <!--                <a th:href="/register/showRegistrationForm" var="updateLink">-->
-                <!--                    <th:param name="userId" value="${user.id}"/>-->
-                <!--                </a>-->
-
-                <!-- construct an "delete" link with customer id-->
-                <!--                <a th:href="/customer/delete" var="deleteLink">-->
-                <!--                    <th:param name="userId" value="${user.id}"/>-->
-                <!--                </a>-->
-
                 <tr>
                     <td th:text="${user.userName}"></td>
                     <td th:text="${user.userRole}"></td>
                     <td th:text="${user.email}"></td>
-
                 </tr>
             </th:block>
 

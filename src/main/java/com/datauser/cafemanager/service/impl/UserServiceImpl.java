@@ -1,7 +1,7 @@
-package com.datauser.cafemanager.service;
+package com.datauser.cafemanager.service.impl;
 import com.datauser.cafemanager.dao.UserDao;
 import com.datauser.cafemanager.models.User;
-import com.datauser.cafemanager.models.enums.Role;
+import com.datauser.cafemanager.service.UserService;
 import com.datauser.cafemanager.user.CrmUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -10,7 +10,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,15 +28,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	@Transactional
 	public User findByUserName(String userName) {
 		// check the database if the user already exists
 		return userDao.findByUserName(userName);
 	}
 
 	@Override
-	@Transactional
-	public void save(CrmUser crmUser) {
+	public void createUser(CrmUser crmUser) {
 		User user = new User();
 		 // assign user details to the user object
 		user.setUserName(crmUser.getUserName());
@@ -50,7 +47,6 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	@Transactional
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 		User user = userDao.findByUserName(userName);
 		if (user == null) {
@@ -72,5 +68,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User findById(String id) {
 		return userDao.findById(id).orElse(null);
+	}
+
+	@Override
+	public List<User> findAllByEmailAndUserName(String userName, String email) {
+		return userDao.findAllByEmailAndUserName(userName, email);
 	}
 }

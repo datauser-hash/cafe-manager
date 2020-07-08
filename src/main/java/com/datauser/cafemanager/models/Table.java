@@ -7,9 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.util.List;
 
-@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
+@javax.persistence.Table(name = "cafe_table")
 public class Table extends AbstractEntity{
 
     private String userId;

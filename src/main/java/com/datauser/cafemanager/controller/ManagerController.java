@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -18,10 +17,10 @@ import java.util.List;
 public class ManagerController {
 
     @Autowired
-    private UserService userService;
+    private final UserService userService;
 
     @Autowired
-    private TableService tableService;
+    private final TableService tableService;
 
     public ManagerController(UserService userService, TableService tableService) {
         this.userService = userService;
@@ -41,4 +40,6 @@ public class ManagerController {
         model.addAttribute("tables", tables);
         return "table-list";
     }
+
+
 }

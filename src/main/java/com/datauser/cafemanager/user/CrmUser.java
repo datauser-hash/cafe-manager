@@ -1,6 +1,4 @@
 package com.datauser.cafemanager.user;
-
-import com.datauser.cafemanager.models.enums.Role;
 import com.datauser.cafemanager.validation.FieldMatch;
 import com.datauser.cafemanager.validation.ValidEmail;
 
