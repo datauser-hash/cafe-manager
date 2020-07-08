@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <title>User List</title>
+    <!-- Reference Bootstrap files -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <style>
+        .error {
+            color: red
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="content">
+        <h2>Users List</h2>
+        <!-- put new button: Add Customer -->
+        <input type="button" value="Add Users"
+               onclick="window.location.href='/register/showRegistrationForm';
+               return false;" class="add-button"/>
+
+
+        <!-- add out html table here-->
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th>Id</th>
+                <th>Table Size</th>
+                <th>Waiter Id</th>
+            </tr>
+            </thead>
+
+            <!-- loop over and print our customers-->
+            <th:block th:each="table : ${tables}">
+
+
+
+                <tr>
+                    <td th:text="${table.id}"></td>
+                    <td th:text="${table.size}"></td>
+                    <td th:text="${table.userId}"></td>
+
+                </tr>
+            </th:block>
+
+        </table>
+    </div>
+</div>
+</body>
+</html>
